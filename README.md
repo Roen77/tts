@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # library-client
 
 ## Build Setup
@@ -18,3 +19,5 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+=======
+>>>>>>> b4a5cc973cbe1a27260eca07186d2849374b67b7

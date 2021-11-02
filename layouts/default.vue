@@ -1,62 +1,95 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="container default" :class="{'edit':editState}">
+    <AppHeader />
+    <main class="main_container">
+      <div class="inner">
+        <Nuxt />
+        <div class="topbtn" :class="{ 'fixed': fix }">
+          top
+        </div>
+      </div>
+    </main>
+    <AppFooter />
+    <CommonAlertMsg :alert-state="alertState" :data="data" :bgcolor="bgcolor" />
   </div>
 </template>
 
+<script>
+import { mapState } from 'vuex'
+import bus from '~/utils/bus'
+export default {
+  middleware: 'authorize',
+  data () {
+    return {
+      alertState: false,
+      data: '',
+      bgcolor: '',
+      fix: false
+    }
+  },
+  computed: {
+    ...mapState('books', ['editState'])
+  },
+  created () {
+    // 알림창 보이기
+    bus.$on('on:alert', ({ data, bgcolor }) => {
+      this.bgcolor = bgcolor
+      this.data = data
+      this.onalert()
+    })
+    // 알림창 끄기
+    bus.$on('off:alert', this.offalert)
+  },
+  mounted () {
+    const top = document.querySelector('.topbtn')
+    window.addEventListener('scroll', this.checkHeight)
+    top.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    })
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.checkHeight)
+  },
+  methods: {
+    onalert () {
+      this.alertState = true
+    },
+    offalert () {
+      this.alertState = false
+    },
+    checkHeight () {
+      this.fix = window.scrollY > 0
+    }
+  }
+}
+</script>
+
 <style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+.container{position: relative; min-height: 100vh; padding-top: 80px; box-sizing: border-box;}
+.default.container{
+background-image: url(/images/main_bg.jpg); background-position: left  bottom 70px; background-size: 450px; background-repeat: no-repeat;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+.default.container.edit{padding: 0; margin: 0; min-height: auto; width: 100%; height: 100vh; overflow: hidden; }
+.topbtn{
+  display: none;
+  cursor: pointer;
+  position: fixed;
+  right: 16px;
+  bottom: 63px;
+  background-color:rgb(56, 95, 134);
+  padding: 10px;
+  border-radius: 10px;
+  color:#fff;
+  z-index: 9999;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.topbtn.fixed{display: block;}
+@media (max-width:600px){
+  .default.container{
+    background-size: 300px;
+    background-position: left -60px bottom 70px;
+  }
 }
 </style>

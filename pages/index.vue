@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="container">
     <div>
       <Logo />
@@ -23,51 +24,43 @@
           GitHub
         </a>
       </div>
+=======
+  <div class="home_inner">
+    <div class="bg">
+>>>>>>> b4a5cc973cbe1a27260eca07186d2849374b67b7
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'home'
+}
 </script>
 
 <style>
-.container {
+.home_inner{
+  padding:100px 30px 30px 30px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+.bg{
   margin: 0 auto;
-  min-height: 100vh;
+  border-radius: 30px;
+  width: 1400px;
+  max-width: 100%;
+  position: relative;
+  border: 3px solid #ddd;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  background-image: url(/images/lib_bg-80.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: 50% top;
+  background-size: cover;
+  height: 100%;
 }
 </style>
