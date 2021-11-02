@@ -1,73 +1,39 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        tesetnn
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="home_inner">
+    <div class="bg">
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'home'
+}
 </script>
 
 <style>
-.container {
+.home_inner{
+  padding:100px 30px 30px 30px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+.bg{
   margin: 0 auto;
-  min-height: 100vh;
+  border-radius: 30px;
+  width: 1400px;
+  max-width: 100%;
+  position: relative;
+  border: 3px solid #ddd;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  background-image: url(/images/lib_bg-80.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: 50% top;
+  background-size: cover;
+  height: 100%;
 }
 </style>
